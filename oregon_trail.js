@@ -72,33 +72,46 @@
     traveler.setFood(-20);
 
     if (traveler.getFood() < 20) {
+      
      traveler.setHealth(false);
     }
 
   }
 
   function join(wagon, traveler){
+
     if (wagon.passengers.length < wagon.capacity) {
+
       wagon.addPassengers(traveler);
+
     }
   }
 
   function quarantine(wagon){
+
     let wagonHealth = true;
+
     for (var i = 0; i < wagon.passengers.length; i++) {
+
       if (!wagon.passengers[i].getHealth()) {
         wagonHealth = false;
         break;
       }
+
     }
+
     return wagonHealth;
+
   }
 
   function food(wagon){
+
     let wagonFood = 0;
+
     for (var i = 0; i < wagon.passengers.length; i++) {
       wagonFood = wagonFood + wagon.passengers[i].getFood();
     }
+
     return wagonFood;
   }
 
