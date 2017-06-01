@@ -26,6 +26,10 @@
       amountOfFood = amountOfFood + x;
     }
 
+    this.manualFoodOveride = function(x){
+      amountOfFood = x;
+    }
+
   }
 
   function Wagon(capacity){
@@ -59,9 +63,8 @@
   }
 
   function hunt(traveler) {
-    let foodChance = getRandomInt(0,10);
-
-    if (foodChance >= 5) {
+    let foodChance = getRandomInt(0,1);
+    if (foodChance == 1) {
       traveler.setFood(100);
     }
 
@@ -72,8 +75,13 @@
     traveler.setFood(-20);
 
     if (traveler.getFood() < 20) {
+
+      // =================================
+      // If you want to not have a negative food value, uncomment the below:
+      // traveler.manualFoodOveride(0);
+      // =================================
       
-     traveler.setHealth(false);
+      traveler.setHealth(false);
     }
 
   }
@@ -89,12 +97,12 @@
 
   function quarantine(wagon){
 
-    let wagonHealth = true;
+    let wagonHealth = false;
 
     for (var i = 0; i < wagon.passengers.length; i++) {
 
       if (!wagon.passengers[i].getHealth()) {
-        wagonHealth = false;
+        wagonHealth = true;
         break;
       }
 
